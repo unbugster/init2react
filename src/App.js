@@ -1,8 +1,7 @@
 import './App.css';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { PostList } from './components/PostList.jsx';
-import { MyButton } from './components/UI/button/MyButton.jsx';
-import { MyInput } from './components/UI/input/MyInput.jsx';
+import { PostForm } from './components/PostForm.jsx';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -11,33 +10,24 @@ function App() {
     { id: 3, title: "JavaSctipt3", body: "Description3" },
   ]);
 
-  const [title, setTitle] = useState('');
-  const addNewPost = (e) => {
-    e.preventDefault();
-    console.log(bodyInputRef.current.value)
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost])
   }
 
-  const bodyInputRef = useRef();
+  const removePost = (post) => {
+    setPosts(posts.filter((p) => p.id !== post.id))
+  }
 
   return (
     <div className="App">
-      <form>
-        <MyInput
-          value={title}
-          onChange={(evt) => setTitle(evt.target.value)}
-          type="text"
-          placeholder='Post title'
-        ></MyInput>
+      <PostForm create={createPost} />
+      {posts.length
+        ?
+        <PostList posts={posts} title={'Post list 1'} remove={removePost} />
+        :
+        <h1 style={{ color: 'red', fontSize: '28px', textAlign: 'center' }}>Add new post!</h1>
+      }
 
-        <MyInput
-          ref={bodyInputRef}
-          type="text"
-          placeholder='Post desctiption'
-        ></MyInput>
-
-        <MyButton onClick={addNewPost} >Add post</MyButton>
-      </form>
-      <PostList posts={posts} title={'Post list 1'} />
     </div >
   );
 };
