@@ -23,7 +23,6 @@
 }
 
 .App {
-  text-align: center;
   margin: 0 auto;
   width: 800px;
 }
@@ -35,4 +34,8 @@
   padding: 15px;
   border: 2px solid teal;
   margin-bottom: 15px;
+}
+
+form {
+  margin-bottom: 20px;
 }

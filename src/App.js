@@ -1,7 +1,8 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { PostList } from './components/PostList.jsx';
-import { Counter } from './components/Counter';
+import { MyButton } from './components/UI/button/MyButton.jsx';
+import { MyInput } from './components/UI/input/MyInput.jsx';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -10,17 +11,33 @@ function App() {
     { id: 3, title: "JavaSctipt3", body: "Description3" },
   ]);
 
-  const [posts2, setPosts2] = useState([
-    { id: 1, title: "Python1", body: "Description1 La La" },
-    { id: 2, title: "Python2", body: "Description2 La La" },
-    { id: 3, title: "Python3", body: "Description3 La La" },
-  ]);
+  const [title, setTitle] = useState('');
+  const addNewPost = (e) => {
+    e.preventDefault();
+    console.log(bodyInputRef.current.value)
+  }
+
+  const bodyInputRef = useRef();
 
   return (
     <div className="App">
+      <form>
+        <MyInput
+          value={title}
+          onChange={(evt) => setTitle(evt.target.value)}
+          type="text"
+          placeholder='Post title'
+        ></MyInput>
+
+        <MyInput
+          ref={bodyInputRef}
+          type="text"
+          placeholder='Post desctiption'
+        ></MyInput>
+
+        <MyButton onClick={addNewPost} >Add post</MyButton>
+      </form>
       <PostList posts={posts} title={'Post list 1'} />
-      <PostList posts={posts2} title={'Post list 2'} />
-      <Counter />
     </div >
   );
 };
