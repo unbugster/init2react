@@ -4,6 +4,35 @@
   box-sizing: border-box;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
 .App {
   text-align: center;
+  margin: 0 auto;
+  width: 800px;
+}
+
+.post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 2px solid teal;
+  margin-bottom: 15px;
 }
