@@ -2,10 +2,9 @@ import React from "react";
 
 const PostItem = (props) => {
 
-
     const deletePostItem = () => {
-        props.remove(props.post)
-    }
+        props.remove(props.post);
+    };
 
     return (
         <div className='post'>
